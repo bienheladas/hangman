@@ -40,6 +40,16 @@
   (major1) == 0 && (major2) <  2 || \
   (major1) == 0 && (major2) == 2 && (minor) <= 3)
 #endif /* MIN_VERSION_split */
+/* package text-1.2.5.0 */
+#ifndef VERSION_text
+#define VERSION_text "1.2.5.0"
+#endif /* VERSION_text */
+#ifndef MIN_VERSION_text
+#define MIN_VERSION_text(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 5)
+#endif /* MIN_VERSION_text */
 /* package transformers-0.5.6.2 */
 #ifndef VERSION_transformers
 #define VERSION_transformers "0.5.6.2"
@@ -133,10 +143,10 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_PACKAGE_KEY
-#define CURRENT_PACKAGE_KEY "hangman-0.1.0.0-7OSPbTc0Cpi2xxOl3XCxUb"
+#define CURRENT_PACKAGE_KEY "hangman-0.1.0.0-HOhBA2pJ9SNFdKv0yCAXr"
 #endif /* CURRENT_packageKey */
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "hangman-0.1.0.0-7OSPbTc0Cpi2xxOl3XCxUb"
+#define CURRENT_COMPONENT_ID "hangman-0.1.0.0-HOhBA2pJ9SNFdKv0yCAXr"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

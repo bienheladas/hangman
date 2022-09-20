@@ -30,12 +30,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "C:\\Users\\oponce\\hangman\\.stack-work\\install\\d75deebd\\bin"
-libdir     = "C:\\Users\\oponce\\hangman\\.stack-work\\install\\d75deebd\\lib\\x86_64-windows-ghc-9.0.2\\hangman-0.1.0.0-23zXbkUzFNFAg4LDKzlhm9-hangman-cli"
-dynlibdir  = "C:\\Users\\oponce\\hangman\\.stack-work\\install\\d75deebd\\lib\\x86_64-windows-ghc-9.0.2"
-datadir    = "C:\\Users\\oponce\\hangman\\.stack-work\\install\\d75deebd\\share\\x86_64-windows-ghc-9.0.2\\hangman-0.1.0.0"
-libexecdir = "C:\\Users\\oponce\\hangman\\.stack-work\\install\\d75deebd\\libexec\\x86_64-windows-ghc-9.0.2\\hangman-0.1.0.0"
-sysconfdir = "C:\\Users\\oponce\\hangman\\.stack-work\\install\\d75deebd\\etc"
+bindir     = "C:\\Users\\oponce\\Documents\\haskell\\hangman3\\.stack-work\\install\\d75deebd\\bin"
+libdir     = "C:\\Users\\oponce\\Documents\\haskell\\hangman3\\.stack-work\\install\\d75deebd\\lib\\x86_64-windows-ghc-9.0.2\\hangman-0.1.0.0-ALsU8NLXUdQF4D2CY4wB4x-hangman-cli"
+dynlibdir  = "C:\\Users\\oponce\\Documents\\haskell\\hangman3\\.stack-work\\install\\d75deebd\\lib\\x86_64-windows-ghc-9.0.2"
+datadir    = "C:\\Users\\oponce\\Documents\\haskell\\hangman3\\.stack-work\\install\\d75deebd\\share\\x86_64-windows-ghc-9.0.2\\hangman-0.1.0.0"
+libexecdir = "C:\\Users\\oponce\\Documents\\haskell\\hangman3\\.stack-work\\install\\d75deebd\\libexec\\x86_64-windows-ghc-9.0.2\\hangman-0.1.0.0"
+sysconfdir = "C:\\Users\\oponce\\Documents\\haskell\\hangman3\\.stack-work\\install\\d75deebd\\etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "hangman_bindir") (\_ -> return bindir)

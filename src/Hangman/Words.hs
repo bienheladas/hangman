@@ -11,7 +11,7 @@ allWords = do
 
 --numero minimo de caracteres para las palabras que jugaran
 minWordLength :: Int
-minWordLength = 5
+minWordLength = 7
 
 --numero maximo de caracteres para las palabras que jugaran
 maxWordLength :: Int

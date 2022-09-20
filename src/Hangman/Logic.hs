@@ -1,9 +1,12 @@
 module Hangman.Logic where
 
-import Hangman.Util ( io )
+import Hangman.Util ( Config, io2 )
 import Hangman.Puzzle ( Puzzle(..) )
 import Control.Monad.Trans.State ( get, StateT )
-import Control.Monad.IO.Class (liftIO)
+import Control.Monad.Trans.Reader (ReaderT)
+import Control.Monad.Trans.Class (lift)
+import Control.Monad.Trans.Writer (WriterT, tell)
+import Data.Text (Text, pack)
 
 --busca el caracter elejido dentro de la palabra del acertijo
 charInWord :: Puzzle -> Char -> Bool
@@ -25,7 +28,8 @@ fillInCharacter (Puzzle word filledSoFar s) c =
         newFilledInSoFar =
           zipWith (combinator c) word filledSoFar
 
---evalua el caracter escogido e invoca la funcion para agregarlo al acertijo de ser el caso
+--evalua el caracter escogido e invoca la funcion para agregarlo al 
+--acertijo de ser el caso 
 handleGuess :: Puzzle -> Char -> IO Puzzle
 handleGuess puzzle guess = do
    putStrLn $ "Letra adivinada: " ++ [guess]
@@ -44,24 +48,26 @@ handleGuess puzzle guess = do
           putStrLn "Esta letra no estaba en la palabra, intenta nuevamente"
           return (fillInCharacter puzzle guess)
 
-handleGuessSIO :: Char -> StateT Puzzle IO Puzzle
-handleGuessSIO guess = do
-  io $ putStrLn $ "Letra adivinada: " ++ [guess]
-  puzzle <- get
+--evalua el caracter escogido e invoca la funcion para agregarlo al 
+--acertijo de ser el caso (usando Monad Transformers)
+handleGuessWRSIO :: Char -> WriterT Text (ReaderT Config (StateT Puzzle IO)) Puzzle
+handleGuessWRSIO guess = do
+  io2 $ putStrLn $ "Letra adivinada: " ++ [guess]
+  puzzle <- (lift . lift) get
   case (charInWord puzzle guess
         , alreadyGuessed puzzle guess) of
       (_, True) -> do
-          io $ putStrLn "Tu ya habias intentado\
+          _ <- tell $ pack "letra repetida"
+          io2 $ putStrLn "Tu ya habias intentado\
                        \ esa letra, escoge otra!"
           return puzzle
       (True, _) -> do
-          io $ putStrLn "Esta letra estaba en la palabra\
+          _ <- tell $ pack "letra acertada!"
+          io2 $ putStrLn "Esta letra estaba en la palabra\
                       \, llenando el acertijo\
                        \ acorde con la nueva letra adivinada"
           return (fillInCharacter puzzle guess)
       (False, _) -> do
-          io $ putStrLn "Esta letra no estaba en la palabra, intenta nuevamente"
+          _ <- tell $ pack "letra equivocada!"
+          io2 $ putStrLn "Esta letra no estaba en la palabra, intenta nuevamente"
           return (fillInCharacter puzzle guess)
-          
-
-  
